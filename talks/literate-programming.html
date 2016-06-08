@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="literate-programming" class="slide level1">
+<h1>Literate programming</h1>
+</section>
+<section id="why" class="slide level1">
+<h1>Why?</h1>
+<blockquote>
+<p>Instead of imagining that our main task is to instruct a <em>computer</em> what to do, let us concentrate rather on explaining to <em>human beings</em> what we want a computer to do.</p>
+<p><cite>Donald Knuth</cite></p>
+</blockquote>
+</section>
+<section id="what-is-it" class="slide level1">
+<h1>What is it?</h1>
+<ul>
+<li>Embedding a program's source code into a document describing the program</li>
+<li>A programming paradigm emphasizing extreme readability</li>
+<li>A kind of fancy preprocessor for pretty-printing</li>
+</ul>
+</section>
+<section id="like-docstrings-but..." class="slide level1">
+<h1>Like docstrings, but...</h1>
+<ul>
+<li>Code embedded in documentation instead of vice versa</li>
+<li>Document structure independent of code structure</li>
+<li>Arbitrary pedagogical construct instead of reference material only</li>
+</ul>
+<aside class="notes">
+<p>&quot;Keeping code and documentation together? Isn't that what a docstring is?&quot;</p>
+</aside>
+</section>
+<section id="how-do-you-do-it" class="slide level1">
+<h1>How do you do it?</h1>
+<ul>
+<li>Write an essay in natural language with markup</li>
+<li>Write chunks of code wherever it's rhetorically convenient</li>
+<li>Each chunk defines a named macro</li>
+<li>Invoke macros in the structure demanded by the compiler or interpreter</li>
+<li><code>weave</code> the literate source to format the essay</li>
+<li><code>tangle</code> the literate source to emit valid source code</li>
+</ul>
+<aside class="notes">
+<p>Chunk of code need not have semantic significance. The source code is only valid if you did it right.</p>
+</aside>
+</section>
+<section id="history" class="slide level1">
+<h1>History</h1>
+<ul>
+<li><em>Literate Programming</em> by Donald Knuth (1984)</li>
+<li><code>WEB</code> implementation (1984): Pascal program and TeX document</li>
+<li><code>CWEB</code> (1987): C, C++, and Java; TeX</li>
+<li><code>noweb</code> by Norman Ramsey (1989): first language-agnostic system</li>
+<li>Racket <code>scribble/lp2</code> module: Self-hosting Scheme library</li>
+<li><code>Literate</code> (2015): language-agnostic, Markdown-like syntax, source mapping</li>
+</ul>
+<aside class="notes">
+<p>Source mapping to trace compiler errors back to lines in the literate source, not the emitted code</p>
+<p>Racket version uses Racket itself for everything, including markup. Maybe it's the most promising for study because of its flexibility. Say &quot;Code is Data&quot;</p>
+</aside>
+</section>
+<section id="whats-it-good-for" class="slide level1">
+<h1>What's it good for?</h1>
+<ul>
+<li>Extreme readability: human-readable natural-language text is first-class output</li>
+<li>Clear thought: if the programmer explains the code, it must be explainable</li>
+<li>Prevent documentation and code from drifting apart</li>
+</ul>
+<aside class="notes">
+<ul>
+<li>Or &quot;she must at least attempt to ensure it's explainable&quot;</li>
+<li>Many approaches to limiting documentation drift:
+<ul>
+<li>Agile development often foregoes documentation altogether</li>
+<li>Python and Rust has executable docstrings that are unit tests</li>
+</ul></li>
+</ul>
+</aside>
+</section>
+<section id="whats-it-not-so-good-for" class="slide level1">
+<h1>What's it not so good for?</h1>
+<ul>
+<li>If you don't intend to produce a document, there's no value</li>
+<li>Additional effort to write it</li>
+<li>Less push for &quot;self-documenting&quot; code quality</li>
+<li>Increases toolchain complexity</li>
+<li>Programmer must also be literate</li>
+</ul>
+</section>
+<section id="is-there-a-place-for-lp-in-modern-software-development" class="slide level1">
+<h1>Is there a place for LP in modern software development?</h1>
+<aside class="notes">
+<p>DON'T ADVANCE YET. There is a document closely related to the source code: the issue tracker. It's a highly specialized document requiring special software to read and write, but it's a document. It describes the codebase's past, present, and future, with a specific emphasis on the requirements and the rationale. Embed test cases and implementation directly within the story. Commit the whole thing to the repository.</p>
+</aside>
+</section>
+<section id="literate-issue-tracking" class="slide level1">
+<h1>Literate issue tracking?</h1>
+<ul>
+<li>Issue tracker is a document</li>
+<li>Embed test case in story instead of cross-referencing through revision numbers</li>
+</ul>
+</section>
+<section id="questions" class="slide level1">
+<h1>Questions?</h1>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
