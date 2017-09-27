@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="how-do-we-know-its-right" class="slide level1">
+<h1>How do we know it's right?</h1>
+<style>
+em {
+  font-style: inherit !important;
+  color: lightgreen;
+}
+
+strong {
+  font-weight: inherit !important;
+  color: skyblue;
+}
+</style>
+</section>
+<section id="let-me-qualify-that" class="slide level1">
+<h1>Let me qualify that</h1>
+<p>How do we know we have implemented what we intended?</p>
+<p>How do we gain confidence in the correctness of our work?</p>
+</section>
+<section id="how-do-we-know-anything" class="slide level1">
+<h1>How do we know anything?</h1>
+<div class="fragment">
+<p><em>Proof</em>: demonstrating that some fact is necessarily true. Distinguish between proven and unproven.</p>
+</div>
+<div class="fragment">
+<p><strong>Inference</strong>: observing that some fact is plausibly true. Distinguish between more reasonable and less reasonable guesses.</p>
+<aside class="notes">
+<p>Maybe stop and ask for guesses</p>
+</aside>
+</div>
+</section>
+<section id="inference" class="slide level1">
+<h1><strong>Inference</strong></h1>
+<ul>
+<li>Experiments and observations increase confidence incrementally</li>
+<li>Can never attain perfect certainty</li>
+<li>But we can get it pretty high</li>
+<li>Applicable to virtually everything</li>
+<li>We do it by instinct</li>
+</ul>
+<aside class="notes">
+<p>I infer that the sun will rise tomorrow</p>
+</aside>
+</section>
+<section id="proof" class="slide level1">
+<h1><em>Proof</em></h1>
+<ul>
+<li>An absolute, incontrovertible assertion</li>
+<li>Supported by axioms and a formal logic system</li>
+<li>Most things cannot be proven</li>
+<li>Or else we don't know how to prove them</li>
+<li>If it's proven, it's perfectly reliable forever</li>
+</ul>
+<aside class="notes">
+<p>Axioms themselves are known and unprovable</p>
+<p>Computational models are subject to proof</p>
+<p>Curry-Howard Correspondence</p>
+</aside>
+</section>
+<section id="some-things-to-note" class="slide level1">
+<h1>Some things to note</h1>
+<ul>
+<li><em>Proof</em> and <strong>inference</strong> are complementary approaches</li>
+<li>You can inferentially validate things that have been proven</li>
+<li>You can prove things that you learned by inference</li>
+<li>Even though they are stronger, proofs are not usually as &quot;convincing&quot; as inference</li>
+</ul>
+<aside class="notes">
+<p>You can use both proof and inference.</p>
+<p>It's not usually necessary to inferentially validate proofs</p>
+<p>Just because something has been proven doesn't mean we believe it, cognitively, but it helps to see it first</p>
+</aside>
+</section>
+<section id="but-dont-take-my-word-for-it" class="slide level1">
+<h1>But don't take my word for it</h1>
+<blockquote>
+<p>The properties of the numbers known today have mostly been <strong>discovered by observation</strong>, and discovered long before their truth has been <em>confirmed by rigid demonstrations</em>.</p>
+</blockquote>
+<p><cite>Leonhard Euler</cite></p>
+</section>
+<section id="applicability-to-software" class="slide level1">
+<h1>Applicability to software?</h1>
+<ul>
+<li>Components of software systems can be <strong>observed</strong></li>
+<li>All high-level programming languages are <em>formal logic</em> systems</li>
+<li>Therefore we can both <strong>infer</strong> and <em>prove</em> correctness</li>
+</ul>
+<aside class="notes">
+<p>Languages can make programs more provable</p>
+<p>Architecture can make programs more observable</p>
+</aside>
+</section>
+<section id="this-sounds-familiar" class="slide level1">
+<h1>This sounds familiar</h1>
+<p>Automated testing can <strong>observe</strong> a program and compare it to expectations</p>
+<p>Static typing can reject any program that isn't <em>proven</em> to be free of type errors</p>
+<aside class="notes">
+<p>This is proof and inference in practice.</p>
+</aside>
+</section>
+<section id="how-to-increase-confidence" class="slide level1">
+<h1>How to increase confidence?</h1>
+<div class="fragment">
+<p><strong>Test-driven development</strong></p>
+<p><em>Languages with strong type systems</em></p>
+<aside class="notes">
+<p>Infer more by ensuring every desired attribute of the program is testable and tested (test-driven development)</p>
+<p>Prove more by using languages that permit the expression and validation of stronger invariants (like Rust, Haskell, Elm)</p>
+</aside>
+</div>
+</section>
+<section id="questions" class="slide level1">
+<h1>Questions?</h1>
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
