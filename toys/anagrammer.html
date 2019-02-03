@@ -1,9 +1,18 @@
-<html>
+<html lang="en">
 <head>
 <title>Anagrammer</title>
+<meta charset="utf-8"/>
 <style>
-div.input {
-    display: block;
+body {
+    font-size: 24px;
+}
+main {
+    height: 75%;
+    width: 75%;
+    margin: auto;
+}
+main > * + * {
+    margin-top: 2rem;
 }
 div.input > label {
     display: block;
@@ -13,8 +22,11 @@ input {
     font-size: 4rem;
     text-align: center;
 }
-input.good {
+input.perfect {
     border-color: green;
+}
+input.good {
+    border-color: blue;
 }
 input.bad {
     border-color: red;
@@ -22,32 +34,57 @@ input.bad {
 </style>
 </head>
 <body>
-    <div class="input">
-        <label for="pool">Pool of letters:</label>
-        <input type="text" name="pool" id="pool" autocomplete="off">
-    </div>
-    <div class="input">
-        <label for="anagram">Your attempt:</label>
-        <input type="text" name="anagram" id="anagram" autocomplete="off">
-    </div>
+<main>
+<h1>Anagrammer</h1>
+<div class="input">
+    <label for="pool">Pool of letters:</label>
+    <input type="text" name="pool" id="pool" autocomplete="off">
+</div>
+<div class="input">
+    <label for="anagram">Your attempt:</label>
+    <input type="text" name="anagram" id="anagram" autocomplete="off">
+</div>
+<div id="status"></div>
+</main>
 
 <script type="text/javascript">
-const poolElement = document.querySelector('#pool');
-const anagramElement = document.querySelector('#anagram');
+const poolElement = document.getElementById('pool');
+const anagramElement = document.getElementById('anagram');
+const statusElement = document.getElementById('status');
+poolElement.value = '';
+anagramElement.value = '';
 
-let anagramIsGood;
+let anagramStatus;
 let originalLetterPool = '';
 
-function setAnagramStatus(good) {
-    anagramIsGood = good;
-    anagramElement.classList = good ? ['good'] : ['bad'];
+const status = {
+    bad: 'bad',
+    good: 'good',
+    perfect: 'perfect',
+}
+
+function setAnagramStatus(s) {
+    anagramStatus = s;
+    anagramElement.classList = [s];
+    switch(s) {
+        case status.bad:
+            statusElement.textContent = 'This is not an anagram.';
+            break;
+        case status.good:
+            statusElement.textContent = 'This could be an anagram.';
+            break;
+        case status.perfect:
+            statusElement.textContent = 'This is an anagram.';
+            break;
+        default:
+            statusElement.textContent = '';
+            break;
+    }
 }
 
 function alphaOnly(input) {
     return input.toUpperCase().split('').filter(l => /^[A-Z]$/.test(l)).join('')
 }
-
-setAnagramStatus(true);
 
 function takeFromPool(text) {
     const characters = text.split('');
@@ -76,15 +113,12 @@ anagramElement.addEventListener('input', event => {
     const newText = event.target.value;
     const remainingPool = takeFromPool(alphaOnly(newText));
     if (remainingPool == null) {
-        setAnagramStatus(false);
+        setAnagramStatus(status.bad);
     } else {
-        setAnagramStatus(true);
         poolElement.value = remainingPool;
+        setAnagramStatus(remainingPool.length > 0 ? status.good : status.perfect);
     }
 })
-
-poolElement.value = '';
-anagramElement.value = '';
 </script>
 </body>
 </html>
