@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Anagrammer</title>
+<style>
+div.input {
+    display: block;
+}
+div.input > label {
+    display: block;
+}
+input {
+    width: 100%;
+    font-size: 4rem;
+    text-align: center;
+}
+input.good {
+    border-color: green;
+}
+input.bad {
+    border-color: red;
+}
+</style>
+</head>
+<body>
+    <div class="input">
+        <label for="pool">Pool of letters:</label>
+        <input type="text" name="pool" id="pool" autocomplete="off">
+    </div>
+    <div class="input">
+        <label for="anagram">Your attempt:</label>
+        <input type="text" name="anagram" id="anagram" autocomplete="off">
+    </div>
+
+<script type="text/javascript">
+const poolElement = document.querySelector('#pool');
+const anagramElement = document.querySelector('#anagram');
+
+let anagramIsGood;
+let originalLetterPool = '';
+
+function setAnagramStatus(good) {
+    anagramIsGood = good;
+    anagramElement.classList = good ? ['good'] : ['bad'];
+}
+
+function alphaOnly(input) {
+    return input.toUpperCase().split('').filter(l => /^[A-Z]$/.test(l)).join('')
+}
+
+setAnagramStatus(true);
+
+function takeFromPool(text) {
+    const characters = text.split('');
+    const pool = originalLetterPool.split('');
+    for (let i = 0; i < characters.length; i++) {
+        const character = characters[i]
+        const poolIndex = pool.indexOf(character);
+        if (poolIndex === -1) {
+            return null;
+        } else {
+            pool.splice(poolIndex, 1);
+        }
+    }
+    return pool.join('');
+}
+
+poolElement.addEventListener('input', event => {
+    const newText = alphaOnly(event.target.value);
+    poolElement.value = newText;
+    originalLetterPool = newText;
+    anagramElement.value = '';
+    setAnagramStatus(true);
+})
+
+anagramElement.addEventListener('input', event => {
+    const newText = event.target.value;
+    const remainingPool = takeFromPool(alphaOnly(newText));
+    if (remainingPool == null) {
+        setAnagramStatus(false);
+    } else {
+        setAnagramStatus(true);
+        poolElement.value = remainingPool;
+    }
+})
+
+poolElement.value = '';
+anagramElement.value = '';
+</script>
+</body>
+</html>
